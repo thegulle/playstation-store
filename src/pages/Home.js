@@ -1,8 +1,7 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProduct, productList } from "stores/ProductStore";
 import { addCart } from "stores/CartStore";
 import SimilarProducts from "components/SimilarProducts";
 import MessageBox from "components/MessageBox";
