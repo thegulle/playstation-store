@@ -1,4 +1,4 @@
-import React from "react";
+import React, { componentWillUnmount } from "react";
 import routes from 'router';
 /* import { APIService } from 'utils/Request/'; */
 import { useRoutes } from "react-router-dom";
@@ -14,6 +14,7 @@ export default function App() {
         useRoutes(routes)
       }
       <Footer />
+
     </>
   )
 }

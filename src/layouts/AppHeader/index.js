@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCartItem } from "stores/CartStore";
 
 export default function Header() {
     const cart = useSelector(state => state.cartStore).cart;
     const [cartTotal, setCartTotal] = useState(0);
+    const dispatch = useDispatch();
     useEffect(() => {
         setCartTotal(
             cart.reduce((acc, curr) => {
@@ -40,12 +42,17 @@ export default function Header() {
                             <i className="ph-shopping-cart"></i>
                             <span>{cart?.length}</span>
                             <ul>
-                                {cart.map((item, index) => (
+                                {cart?.map((item, index) => (
                                     <li key={index}>
-                                        <img src={item.image} alt="product" />
+                                        <img src={item?.image} alt="product" />
                                         <div className="product-info">
-                                            <h3>{item.name}</h3>
-                                            <p>{(item.price).toFixed(2)} $</p>
+                                            <p>{(item?.price).toFixed(2)} $</p>
+                                            <h3>{item?.name}</h3>
+                                        </div>
+                                        <div>
+                                            <button onClick={() => dispatch(removeCartItem(index))}>
+                                                <i class="ph-trash text-white hover:bg-yellow-400 transition-all"></i>
+                                            </button>
                                         </div>
                                     </li>
                                 ))}
